@@ -7,7 +7,7 @@ describe Decidim::HomepageInteractiveMap do
 
   describe "#version" do
     it "returns module's version" do
-      expect(described_class::VERSION).to eq("2.0.0")
+      expect(described_class::VERSION).to eq("2.0.1")
     end
   end
 
