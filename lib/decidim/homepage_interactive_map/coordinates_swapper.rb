@@ -8,7 +8,8 @@ module Decidim
     # This class swaps the coordinates of a feature
     module CoordinatesSwapper
       def self.convert_geojson(geojson, opts = {})
-        return nil if geojson.nil?
+        return if geojson.nil?
+        return if geojson.try(:values)&.compact.blank?
 
         from = opts[:from] || detect_crs(geojson) || "EPSG:4326"
         to = opts[:to] || "EPSG:4326"
