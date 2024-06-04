@@ -9,22 +9,20 @@ module Decidim
     module CoordinatesSwapper
       def self.convert_geojson(geojson, opts = {})
         return if geojson.nil?
-        return if geojson.try(:values)&.compact.blank?
 
         from = opts[:from] || detect_crs(geojson) || "EPSG:4326"
         to = opts[:to] || "EPSG:4326"
 
-        geojson_clone = geojson.dup.deep_symbolize_keys
-        new_coordinates = transform(geojson_clone[:parsed_geometry][:geometry][:coordinates], from, to)
-        new_geometry = geojson_clone[:parsed_geometry][:geometry].merge(
+        new_coordinates = transform(geojson[:parsed_geometry][:geometry][:coordinates], from, to)
+        new_geometry = geojson[:parsed_geometry][:geometry].merge(
           {
             coordinates: new_coordinates,
             crs: to
           }
         )
-        new_parsed_geometry = geojson_clone[:parsed_geometry].merge(geometry: new_geometry)
+        new_parsed_geometry = geojson[:parsed_geometry].merge(geometry: new_geometry)
 
-        geojson_clone.merge(parsed_geometry: new_parsed_geometry)
+        geojson.merge(parsed_geometry: new_parsed_geometry)
       end
 
       def self.transform(coordinates, from, to)
@@ -54,7 +52,7 @@ module Decidim
       end
 
       def self.detect_crs(geojson)
-        geojson.dup.deep_symbolize_keys.dig(:parsed_geometry, :geometry, :crs)
+        geojson.dig(:parsed_geometry, :geometry, :crs)
       end
     end
   end
