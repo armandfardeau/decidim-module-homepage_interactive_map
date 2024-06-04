@@ -66,7 +66,7 @@ module Decidim
         return if geojson.nil? || geojson[:geometry].nil?
         return geojson[:parsed_geometry].deep_symbolize_keys if geojson[:parsed_geometry].is_a? Hash
 
-        JSON.parse(geojson[:parsed_geometry].gsub('=>', ':')).deep_symbolize_keys
+        JSON.parse(geojson[:parsed_geometry].gsub("=>", ":")).deep_symbolize_keys
       end
     end
   end
