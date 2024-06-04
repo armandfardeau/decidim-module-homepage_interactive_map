@@ -54,11 +54,19 @@ module Decidim
       def geojson
         return nil if form.geolocalized.blank?
 
+        geojson = form.geojson.deep_dup.deep_symbolize_keys
         {
-          color: form.geojson[:color],
-          geometry: form.geojson[:geometry],
-          parsed_geometry: form.geojson[:parsed_geometry]
+          color: geojson[:color] || form.color,
+          geometry: geojson[:geometry],
+          parsed_geometry: parsed_geometry(geojson)
         }
+      end
+
+      def parsed_geometry(geojson)
+        return if geojson.nil? || geojson[:geometry].nil?
+        return geojson[:parsed_geometry].deep_symbolize_keys if geojson[:parsed_geometry].is_a? Hash
+
+        JSON.parse(geojson[:parsed_geometry].gsub('=>', ':')).deep_symbolize_keys
       end
     end
   end
