@@ -13,7 +13,7 @@ gem "decidim-homepage_interactive_map", path: "."
 gem "bootsnap", "~> 1.4"
 gem "puma", "~> 5.5.1"
 
-gem "rgeo", "~> 2.4"
+gem "rgeo", "~> 3.0"
 gem "rgeo-proj4", "~> 3.1"
 
 group :development, :test do
