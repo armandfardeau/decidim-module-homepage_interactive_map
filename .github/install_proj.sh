@@ -1,4 +1,4 @@
-sudo apt-get update && sudo apt install cmake sqlite libtiff-dev curl libcurl4-openssl-dev libssl-dev -y
+sudo apt-get update && sudo apt install cmake sqlite libtiff-dev curl libcurl4-openssl-dev libssl-dev libproj-dev proj-bin -y
 
 if [ ! -d "$PROJ_VERSION" ]; then
   curl https://download.osgeo.org/proj/"${PROJ_VERSION}".tar.gz -o "${PROJ_VERSION}".tar.gz
