@@ -1,7 +1,9 @@
-sudo apt-get update && sudo apt install cmake sqlite libtiff-dev curl libcurl4-openssl-dev libssl-dev libproj-dev proj-bin -y
+sudo apt-get update && sudo apt-get install -y cmake sqlite libtiff-dev curl libcurl4-openssl-dev libssl-dev libproj-dev proj-bin
+
+#  curl https://download.osgeo.org/proj/"${PROJ_VERSION}".tar.gz -o "${PROJ_VERSION}".tar.gz
 
 if [ ! -d "$PROJ_VERSION" ]; then
-  curl https://download.osgeo.org/proj/"${PROJ_VERSION}".tar.gz -o "${PROJ_VERSION}".tar.gz
+  curl -L https://download.osgeo.org/proj/"${PROJ_VERSION}".tar.gz -o "${PROJ_VERSION}".tar.gz
   tar -xzf "${PROJ_VERSION}".tar.gz
 fi
 
@@ -15,3 +17,4 @@ cd build || exit
 cmake ..
 sudo cmake --build . -j "$(nproc)" --target install
 sudo ldconfig
+proj
