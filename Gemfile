@@ -14,7 +14,7 @@ gem "bootsnap", "~> 1.4"
 gem "puma", "~> 5.5.1"
 
 gem "rgeo", "~> 3.0"
-gem "rgeo-proj4", "~> 3.1"
+gem "rgeo-proj4", "~> 4.0"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
