@@ -17,4 +17,13 @@ cd build || exit
 cmake ..
 sudo cmake --build . -j "$(nproc)" --target install
 sudo ldconfig
+
+export PROJ_DIR=/usr/local
+export PROJ_LIB=/usr/local/lib
+export PROJ_INCLUDE=/usr/local/include
+
 proj
+
+echo "PROJ_DIR: $PROJ_DIR"
+echo "PROJ_LIB: $PROJ_LIB"
+echo "PROJ_INCLUDE: $PROJ_INCLUDE"
