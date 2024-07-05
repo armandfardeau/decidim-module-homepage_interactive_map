@@ -27,3 +27,7 @@ proj
 echo "PROJ_DIR: $PROJ_DIR"
 echo "PROJ_LIB: $PROJ_LIB"
 echo "PROJ_INCLUDE: $PROJ_INCLUDE"
+
+gem install rgeo-proj4 -- --with-proj-dir=$PROJ_DIR --with-proj-include=$PROJ_INCLUDE --with-proj-lib=$PROJ_LIB
+bundle config build.rgeo-proj4 --with-proj-dir=$PROJ_DIR --with-proj-include=$PROJ_INCLUDE --with-proj-lib=$PROJ_LIB
+bundle install
