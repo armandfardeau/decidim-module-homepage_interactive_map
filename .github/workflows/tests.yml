@@ -21,6 +21,8 @@ jobs:
         with:
           fetch-depth: 1
       - uses: ruby/setup-ruby@v1
+      - name: bundle install
+        run: bundle install
       - name: ERB files linting
         run: ./.github/run_erblint.sh
   lint:
@@ -35,6 +37,8 @@ jobs:
         with:
           fetch-depth: 1
       - uses: ruby/setup-ruby@v1
+      - name: bundle install
+        run: bundle install
       - name: Run Rubocop
         run: bundle exec rubocop -P
   test:
@@ -86,6 +90,7 @@ jobs:
         run: |
           ./.github/install_proj.sh
       - run: |
+          bundle install
           bundle config set build.rgeo-proj4 --with-proj-dir="/usr/local/bin/"
           bundle pristine rgeo-proj4
         name: Setup gem
