@@ -21,8 +21,6 @@ jobs:
         with:
           fetch-depth: 1
       - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - name: ERB files linting
         run: ./.github/run_erblint.sh
   lint:
@@ -37,8 +35,6 @@ jobs:
         with:
           fetch-depth: 1
       - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - name: Run Rubocop
         run: bundle exec rubocop -P
   test:
@@ -68,8 +64,6 @@ jobs:
         with:
           fetch-depth: 1
       - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
