@@ -6,7 +6,6 @@ PATH
       decidim-core (>= 0.25.0, < 0.28)
       decidim-dev (>= 0.25.0, < 0.28)
       rgeo (~> 3.0)
-      rgeo-proj4 (~> 4.0)
 
 GEM
   remote: https://rubygems.org/

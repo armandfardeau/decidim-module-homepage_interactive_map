@@ -22,6 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency "decidim-core", Decidim::HomepageInteractiveMap::COMPAT_DECIDIM_VERSION
   s.add_dependency "decidim-dev", Decidim::HomepageInteractiveMap::COMPAT_DECIDIM_VERSION
   s.add_dependency "rgeo", "~> 3.0"
-  s.add_dependency "rgeo-proj4", "~> 4.0"
   s.metadata["rubygems_mfa_required"] = "true"
 end
