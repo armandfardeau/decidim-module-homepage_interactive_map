@@ -15,7 +15,7 @@ module Decidim
       attribute :geolocalized, Boolean
       jsonb_attribute :geojson, [
         [:geometry, String],
-        [:parsed_geometry, String],
+        [:parsed_geometry, Hash],
         [:color, String]
       ]
 
@@ -49,7 +49,14 @@ module Decidim
         return true if geolocalized.blank?
 
         begin
-          self.parsed_geometry = JSON.parse(geometry)
+          self.parsed_geometry = JSON.parse(geometry).deep_symbolize_keys
+          if self.parsed_geometry[:type] = "FeatureCollection"
+            if self.parsed_geometry[:features]&.size > 1
+              errors.add(:geometry, "GeoJSON error : FeatureCollection with more than one feature are not valid")
+            else
+              self.parsed_geometry = self.parsed_geometry[:features]&.first
+            end
+          end
         rescue StandardError
           errors.add(:geometry, I18n.t("decidim.scope.errors.geojson_error"))
         end
